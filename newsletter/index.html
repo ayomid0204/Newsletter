@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #F15E50;
+            --dark: #00001A;
+            --gray: #5E607A;
+            --light-gray: #C5C6CE;
+            --light: #FFFDFA;
+            --yellow: #E9AA52;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-image {
+            background-color: #f0f0f0;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 1.2rem;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--dark);
+        }
+
+        .hero-details p {
+            margin-bottom: 2rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1rem 2rem;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .sidebar h2 {
+            color: var(--yellow);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .sidebar-item h3:hover {
+            color: var(--yellow);
+            cursor: pointer;
+        }
+
+        .sidebar-item p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Featured Articles */
+        .featured {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .article {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .article-image {
+            width: 100px;
+            height: 130px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 0.9rem;
+            overflow: hidden;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-content {
+            flex: 1;
+        }
+
+        .article-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .article-content h3:hover {
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .article-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Categories Section */
+        .categories {
+            margin: 4rem 0;
+            padding: 2rem 0;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+        }
+
+        .categories .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .categories h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background-color: white;
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .category-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background-color: var(--light);
+            z-index: 100;
+            padding: 2rem;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            font-size: 1.2rem;
+            color: var(--dark);
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .article {
+                flex-direction: column;
+            }
+            
+            .article-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .sidebar {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Navigation Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">W.</div>
+            <div class="menu-close" id="menuClose">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">New</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Trending</a></li>
+            <li><a href="#">Categories</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">W.</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">New</a></li>
+                <li><a href="#">Popular</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">Categories</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="full-width">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-main">
+                    <div class="hero-image">
+                    <img src="C:\Users\user\Desktop\Files\Projects\newsletter\Images\image-web-3-desktop.jpg" alt="web 3 desktop" />
+                    </div>
+                    <div class="hero-text">
+                        <h1>The Bright Future of Web 3.0?</h1>
+                        <div class="hero-details">
+                            <p>We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. But is it really fulfilling its promise?</p>
+                            <a href="#" class="read-more">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <aside class="sidebar">
+                    <h2>New</h2>
+                    <div class="sidebar-item">
+                        <h3>Hydrogen VS Electric Cars</h3>
+                        <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
+                    </div>
+                    <div class="sidebar-item">
+                        <h3>The Downsides of AI Artistry</h3>
+                        <p>What are the possible adverse effects of on-demand AI image generation?</p>
+                    </div>
+                    <div class="sidebar-item">
+                        <h3>Is VC Funding Drying Up?</h3>
+                        <p>Private funding by VC firms is down 50% YOY. We take a look at what that means.</p>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- Featured Articles -->
+            <section class="featured">
+                <div class="article">
+                    <div class="article-image">
+                    <img src="C:\Users\user\Desktop\Files\Projects\newsletter\Images\image-retro-pcs.jpg" alt="retro pcs" />
+                    </div>
+                    <div class="article-content">
+                        <div class="article-number">01</div>
+                        <h3>Reviving Retro PCs</h3>
+                        <p>What happens when old PCs are given modern upgrades?</p>
+                    </div>
+                </div>
+                <div class="article">
+                    <div class="article-image">
+                    <img src="C:\Users\user\Desktop\Files\Projects\newsletter\Images\image-top-laptops.jpg" alt="image top laptop" />
+                    </div>
+                    <div class="article-content">
+                        <div class="article-number">02</div>
+                        <h3>Top 10 Laptops of 2022</h3>
+                        <p>Our best picks for various needs and budgets.</p>
+                    </div>
+                </div>
+                <div class="article">
+                    <div class="article-image">
+                        <!-- Replace with your gaming image -->
+                        <img src="C:\Users\user\Desktop\Files\Projects\newsletter\Images\image-gaming-growth.jpg" alt="image gaming growth" />
+                    </div>
+                    <div class="article-content">
+                        <div class="article-number">03</div>
+                        <h3>The Growth of Gaming</h3>
+                        <p>How the pandemic has sparked fresh opportunities.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Categories -->
+        <section class="categories">
+            <div class="container">
+                <h2>Categories</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <h3>Technology</h3>
+                        <p>Latest in tech innovations and trends</p>
+                    </div>
+                    <div class="category-card">
+                        <h3>Gaming</h3>
+                        <p>News, reviews and gaming culture</p>
+                    </div>
+                    <div class="category-card">
+                        <h3>Business</h3>
+                        <p>Market trends and business insights</p>
+                    </div>
+                    <div class="category-card">
+                        <h3>Science</h3>
+                        <p>Discoveries and research breakthroughs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const menuClose = document.getElementById('menuClose');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+
+        function openMobileMenu() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        menuToggle.addEventListener('click', openMobileMenu);
+        menuClose.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking on a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Adjust layout for window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 600) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>
